@@ -1,0 +1,44 @@
+<h2 *ngIf="errormessage" class="text-white text-center bg-danger">
+    {{errormessage}}
+</h2>
+<section *ngIf="allPCart;else msg" class="mx-auto bg-main-light p-3 mb-3 w-75 shadow rounded">
+
+    <div class="pt-2 d-flex justify-content-between align-items-center">
+        <h3 class="fw-bold">Cart Shop</h3>
+        <button  [routerLink]="['/checkout',cartId]" class="btn main-btn"> Check Out </button>
+    </div>
+    <h1  *ngIf="deleteMessage">{{deleteMessage}}</h1>
+
+    <p class="text-main"> Total Price: {{totalPrice|currency:"EGP"}}</p>
+    <div *ngFor="let pItem of allPCart" class="row align-items-center border-bottom py-2">
+        <div class="col-md-2">
+            <img [src]="pItem.product.imageCover"[alt]="pItem.product.title" class="w-100">
+        </div>
+        <div class="col-md-3">
+            <h3>{{pItem.product.title}}</h3>
+            <p class="text-main">price :{{pItem.price|currency:"EGP"}}</p>
+           <button #btnRemove (click)="deleteItemClick(pItem.product._id,btnRemove)"
+            class="btn text-danger m-0 p-0"> 
+            <i  class="fa-solid fa-trash"></i> Remove
+           </button> 
+        </div>
+        <div class="col-md-3 offset-md-4 gap-3 d-flex">
+           <button #btn1 (click)="updateCount(pItem.product._id,pItem.count-1,btn1,btn2)" class="btn btn-sm border-success">-
+           </button>
+            <span>{{pItem.count}}</span>
+            <button #btn2 (click)="updateCount(pItem.product._id,pItem.count+1,btn1,btn2)" class="btn btn-sm border-success">+
+            </button>
+
+        </div>
+
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+        <button (click)="clearCart()" class="btn btn-outline-danger text-dark">Clear Your Cart </button>
+    </div>
+
+</section>
+
+
+<ng-template #msg >
+    <h2 class=" pb-3 fw-bolder fs-2 text-center text-main">Your Cart Is Empty ....</h2>
+</ng-template>

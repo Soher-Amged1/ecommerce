@@ -1,0 +1,18 @@
+<h2 class="bg-danger text-center p-5" *ngIf="errMessage">{{errMessage}}</h2>
+<section class="py-4 container" *ngIf="categories">
+    <h2 *ngIf="!errMessage" class="text-main pb-3 fw-bolder fs-2 text-center ">All Categories</h2>
+    <div class="row g-4">
+        <div *ngFor="let category of categories" class="col-sm-12 col-md-6 col-xl-4">
+            <div  class="category">
+                <header *ngIf="category._id"  role="button" [routerLink]="['/categoryDetails',category._id]" >
+                    <img [src]="category.image" height="350" class="w-100" [alt]="category.name" [title]="category.name">
+
+                </header>
+                <footer>
+                    <h4 class="h5 p-3 text-center text-main fw-bolder">{{category.name}}</h4>
+
+                </footer>
+            </div>
+            </div>
+  </div>
+</section>

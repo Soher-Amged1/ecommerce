@@ -1,0 +1,112 @@
+<section class="w-75 my-5 mx-auto shadow rounded p-4 bg-main-light" *ngIf="isCodeForm">
+    <h1 class="alert alert-danger text-center" *ngIf="errorMessage">{{errorMessage}}</h1>
+         <h2 class="mb-3">Login Now :</h2>
+         <form (ngSubmit)="loginSubmit(loginForm)" [formGroup]="loginForm">
+          
+             <div>
+                 <label>Emaill :</label>
+                 <input formControlName="email" class="form-control">
+     
+                 <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched"class="alert alert-danger">
+                     <p *ngIf="loginForm.get('email')?.errors?.['required']">email is required field</p>
+                     <p *ngIf="loginForm.get('email')?.errors?.['email']">please enter valid email</p>
+                 </div>
+             </div>
+             <div>
+                 <label>Password :</label>
+                 <input formControlName="password" class="form-control">
+     
+                 <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched"class="alert alert-danger">
+                     <p *ngIf="loginForm.get('password')?.errors?.['required']">password is required field</p>
+                     <p *ngIf="loginForm.get('password')?.errors?.['pattern']">please enter valid password</p>
+                 </div>
+             </div>
+           
+             
+             <button [disabled]="loginForm.invalid" class="btn bg-main text-white ms-auto my-3">Login
+               <span *ngIf="loading"> 
+                 <i class="fas fa-spin fa-spinner"></i> </span>
+             </button>
+             <button (click)="gotoForget()" type="button" class="btn text-main" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                 Forget Password</button>
+ 
+         </form>
+ </section>
+ 
+ 
+ 
+   
+             <!----forget password------->
+             <section  class="w-75 my-5 mx-auto shadow rounded p-4 bg-main-light"*ngIf="sendToEmail">
+     <form (ngSubmit)="forgetSubmit(forgetForm)" [formGroup]="forgetForm">
+            
+       <div>
+           <label>Emaill :</label>
+           <input formControlName="email" class="form-control">
+ 
+           <div *ngIf="forgetForm.get('email')?.errors && forgetForm.get('email')?.touched"class="alert alert-danger">
+               <p *ngIf="forgetForm.get('email')?.errors?.['required']">email is required field</p>
+               <p *ngIf="forgetForm.get('email')?.errors?.['email']">please enter valid email</p>
+           </div>
+       </div>
+       <button [disabled]="forgetForm.invalid" type="submit" class="btn bg-main text-white ms-auto my-3">Send To Email
+         
+       </button>
+ 
+ 
+ 
+     </form>
+              </section>
+            
+              <!----code password form------->
+              <section  class="w-75 my-5 mx-auto shadow rounded p-4 bg-main-light"*ngIf="verify">
+     
+     <form (ngSubmit)="codeSubmit(codeForm)" [formGroup]="codeForm">
+   
+      <div>
+          <label>code :</label>
+          <input formControlName="resetCode" class="form-control">
+ 
+          <div *ngIf="codeForm.get('resetCode')?.errors && codeForm.get('resetCode')?.touched"class="alert alert-danger">
+              <p *ngIf="codeForm.get('resetCode')?.errors?.['required']">Code is required field</p>
+          </div>
+      </div>
+      <button [disabled]="codeForm.invalid" type="submit" class="btn bg-main text-white ms-auto my-3">Verify Code</button>
+ 
+ 
+ 
+    </form>
+ 
+              </section>
+              <!----Reset new password form------->
+              <section class="w-75 my-5 mx-auto shadow rounded p-4 bg-main-light" *ngIf="ResetPassword">
+              <form (ngSubmit)="ResetPassSubmit(ResetNewPasswordForm)" [formGroup]="ResetNewPasswordForm">
+            
+               <div>
+                   <label>Emaill :</label>
+                   <input formControlName="email" class="form-control">
+       
+                   <div *ngIf="ResetNewPasswordForm.get('email')?.errors && ResetNewPasswordForm.get('email')?.touched"class="alert alert-danger">
+                       <p *ngIf="ResetNewPasswordForm.get('email')?.errors?.['required']">email is required field</p>
+                       <p *ngIf="ResetNewPasswordForm.get('email')?.errors?.['email']">please enter valid email</p>
+                   </div>
+               </div>
+               <div>
+                   <label>Password :</label>
+                   <input formControlName="newPassword" class="form-control">
+       
+                   <div *ngIf="ResetNewPasswordForm.get('newPassword')?.errors && ResetNewPasswordForm.get('newPassword')?.touched"class="alert alert-danger">
+                       <p *ngIf="ResetNewPasswordForm.get('newPassword')?.errors?.['required']">password is required field</p>
+                       <p *ngIf="ResetNewPasswordForm.get('newPassword')?.errors?.['pattern']">please enter valid password</p>
+                   </div>
+               </div>
+               <button [disabled]="ResetNewPasswordForm.invalid" type="submit" class="btn bg-main text-white ms-auto my-3">Reset Password</button>
+           
+           
+           
+             </form>
+             </section>
+   
+   
+   
+         

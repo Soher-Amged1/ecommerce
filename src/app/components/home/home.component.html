@@ -1,0 +1,84 @@
+<section class="py-3 w-50 m-auto">
+    <div class="row g-0">
+        <div class="col-md-7">
+            <owl-carousel-o [options]="mainSlideOptions">
+              <ng-template carouselSlide><img class="slider" src="./assets/images/slider-image-1.jpeg" alt="slide1"></ng-template>  
+              <ng-template carouselSlide><img class="slider" src="./assets/images/slider-image-2.jpeg" alt="slide2"></ng-template>  
+              <ng-template carouselSlide><img class="slider" src="./assets/images/slider-image-3.jpeg" alt="slide3"></ng-template>     
+            </owl-carousel-o>
+        </div>
+        <div class="col-md-5">
+            <img class="w-100 nslider "  src="./assets/images/grocery-banner-2.jpeg" alt="slide1">
+            <img class="w-100 nslider " src="./assets/images/grocery-banner.png" alt="slide2">            
+        </div>
+    </div>
+
+</section>
+
+
+<section class="py-4" *ngIf="categories">
+    <h2 class="p-2 text-main">Popular Categories</h2>
+
+  <owl-carousel-o [options]="categoryOptions">
+
+    <ng-container *ngFor="let category of categories">
+      <ng-template carouselSlide [id]="category._id">
+        <img height="300px" [src]="category.image" [alt]="category.name" [title]="category.name">
+        <h4 class="h6 text-main">{{category.name}}</h4>
+
+      </ng-template>
+    </ng-container>
+
+  </owl-carousel-o>
+</section>
+
+
+
+<section *ngIf="allProducts" class="py-4 container" >
+    <h2 class="p-2 text-main">Popular Products</h2>
+    <div class="row g-4 mx-0">
+        <div *ngFor="let product of allProducts| paginate: { id: 'productpagination',
+        itemsPerPage: pageSize,
+        currentPage: currentPage,
+        totalItems: total }" class="col-sm-8 col-md-6 col-lg-4 col-xl-3 product">
+            <div *ngIf="product" class="product h-100">
+                <div *ngIf="product._id" >
+                <i *ngIf="!wishList.includes($any(product._id))" (click)="addWishList(product._id)"class=" fa-solid fa-heart heart"></i>
+               </div>
+               <div *ngIf="product._id" >
+
+                <i *ngIf="wishList.includes($any(product._id))"class=" fa-solid reed fa-heart heart"></i>
+               </div>
+            <header *ngIf="product._id"  role="button" [routerLink]="['/productDetails',product._id]">
+                    <img [src]="product.imageCover" class="w-100"[title]="product.title" [alt]="product.title">
+                    <h3 class="h6">{{product.title |cuttext :3}}</h3>
+                    <h4 class="h6 text-main">{{product.category.name}}</h4>
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <span>{{product.price | currency:'e£'}}</span>
+                        <p class="mb-0"><i class="fa-solid fa-star rating-color"></i> <span class="text-muted">{{product.ratingsAverage}}</span></p>
+                    </div>
+                </header>
+                <footer>
+                    <button (click)="addCartClick(product._id,btnAdd)" #btnAdd class="btn main-btn w-100">Add To Cart</button>
+                </footer>
+            </div>
+
+        </div>
+    </div>
+    <div class="page text-center">
+        <pagination-controls   class="my-pagination"  id="productpagination"
+        (pageChange)="pageChanged($event)"
+        (pageBoundsCorrection)="pageChanged($event)"
+        [maxSize]="9"
+        [directionLinks]="true"
+        [autoHide]="true"
+        [responsive]="true"
+        previousLabel="Previous"
+        nextLabel="Next"
+        screenReaderPaginationLabel="Pagination"
+        screenReaderPageLabel="page"
+        screenReaderCurrentLabel="You're on page">
+</pagination-controls>
+    </div>
+  
+</section>

@@ -1,0 +1,38 @@
+<nav #navBar class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+    <a class="navbar-brand" ><img src="./assets/images/freshcart-logo.svg"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse d-lg-flex d-xl-flex
+     justify-content-between " id="navbarNavAltMarkup">
+      <div *ngIf="islogin" class="navbar-nav">
+     
+          <a class="nav-link" routerLinkActive="active" routerLink="home">Home</a>
+          <a routerLink="cart"routerLinkActive="active" class="nav-link">Cart</a>
+          <a routerLink="wishlist"routerLinkActive="active" class="nav-link">Wish List</a>
+
+          <a class="nav-link"routerLinkActive="active" routerLink="products">Products</a>
+          <a class="nav-link"routerLinkActive="active" routerLink="categories">Caterories</a>
+          <a class="nav-link"routerLinkActive="active" routerLink="brands">Brands</a>
+     
+        </div>
+        <div  class="d-flex gap-2">
+          <a *ngIf="islogin" routerLink="cart" class="nav-link position-relative " href="#">
+            <i class="fa-solid fa-cart-shopping light-color fa-2x"></i>
+            <span class="badge bg-main position-absolute bottom-50 start-50">{{navCartItem}}</span>
+          </a>
+
+          
+            <a *ngIf="!islogin" class="nav-link" routerLink="login">SignIn</a>
+            <a *ngIf="!islogin"class="nav-link" routerLink="register">Register</a>
+            <a (click)="logout()" *ngIf="islogin"class="nav-link ms-1" href="">Logout</a>
+
+        </div>
+    </div>
+
+  
+
+  </div>
+</nav>

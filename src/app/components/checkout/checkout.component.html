@@ -1,0 +1,18 @@
+<section class="mx-auto bg-main-light p-3 mb-3 w-75 shadow rounded">
+    <h1 class="text-center text-main">Check-out</h1>
+    <form [formGroup]="checkoutForm">
+        <div>
+            <label>Details:</label>
+            <input formControlName="details" class="form-control">
+        </div>
+        <div>
+            <label>Phone:</label>
+            <input formControlName="phone" class="form-control">
+        </div>
+        <div>
+            <label>City:</label>
+            <input formControlName="city" class="form-control">
+        </div>
+        <button (click)="paySubmit()" type="submit" class="main-btn btn">Pay</button>
+    </form>
+</section>

@@ -1,0 +1,11 @@
+{
+    "extensions.closeExtensionDetailsOnViewChange": true,
+    "editor.defaultFoldingRangeProvider": null,
+    "html-css-class-completion.CSSLanguages": [
+
+        "css",
+        "sass",
+        "scss"
+    ],
+    "css.validate": true
+}

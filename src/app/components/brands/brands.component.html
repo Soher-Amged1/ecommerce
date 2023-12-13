@@ -1,0 +1,22 @@
+<h2 class="bg-danger text-center p-3" *ngIf="errMessage">{{errMessage}}</h2>
+
+<section class="py-4 container" *ngIf="brands">
+    <h2 *ngIf="!errMessage" class="text-main pb-3 fw-bolder fs-2 text-center ">All Brands</h2>
+    
+    <div class="row g-4">
+        <div *ngFor="let brand of brands" class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <div  class="category">
+                <header role="button" [routerLink]="['/brandDetails',brand._id]" >
+                    <img [src]="brand.image" height="250" class="w-100" [alt]="brand.name" [title]="brand.name">
+
+                </header>
+                <footer>
+                    <h4 class="h5 p-3 text-center text-main fw-bolder">{{brand.name}}</h4>
+                </footer>
+            </div>
+            </div>
+  </div>
+
+   
+
+</section>

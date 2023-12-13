@@ -1,0 +1,16 @@
+<h2  *ngIf="errMessage" class="bg-danger text-bg-dark text-center p-3">{{errMessage}}</h2>
+<section *ngIf="pInfo" class="container py-5 mx-auto w-75 rounded shadow p-3 mb-4 bg-light">
+
+    <div class="row align-items-center g-4">
+        <div class="col-md-6">
+                        <img class="w-100" [src]="pInfo.image" alt="product">
+                    
+        </div>
+        <div class="col-md-6">
+            <div class="text-center text-main fs-1 fw-bolder">
+                <h2 class="h6">{{pInfo.name}}</h2>
+               
+            </div>
+        </div>
+    </div>
+</section>

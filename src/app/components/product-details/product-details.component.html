@@ -1,0 +1,27 @@
+<h2 class="bg-danger text-center p-3" *ngIf="errmessage">{{errmessage}}</h2>
+
+<section *ngIf="pInfo" class="container py-5 mx-auto w-75 rounded shadow p-3 mb-4">
+    <div class="row align-items-center g-4">
+        <div class="col-md-3">
+            <owl-carousel-o [options]="productOptions">
+                <ng-container *ngFor="let path of pInfo.images">
+                    <ng-template carouselSlide="">
+                        <img class="w-100" [src]="path" alt="product">
+                    </ng-template>
+                </ng-container>
+              </owl-carousel-o>
+        </div>
+        <div class="col-md-9">
+            <div>
+                <h2 class="h6">{{pInfo.title}}</h2>
+                <p class="text-muted small">{{pInfo.description}}</p>
+                <span>{{pInfo.category.name}}</span>
+                <div class="d-flex justify-content-between align-items-center">
+                    <span  class="small text-muted my-3">{{pInfo.price|currency:"EGP"}}</span>
+                    <p class="mb-0"><i class="fa-solid fa-star rating-color"></i>{{pInfo.ratingsAverage}}</p>
+                </div>
+                <button #btn2 (click)="addCartClick(pInfo._id,btn2)" class="btn main-btn w-100">Add To Cart</button>
+            </div>
+        </div>
+    </div>
+</section>
